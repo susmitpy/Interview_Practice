@@ -38,6 +38,11 @@ d = 30
 def convert_to_int(time):
     return int(time.replace(":",""))
 
+def convert_to_str(time):
+    time = list(str(time))
+    time.insert(-2,":")
+    return "".join(time)
+
 def get_free_time_slots(m,b,d):
     """
     Returns free time slots of duration >= d
@@ -76,6 +81,34 @@ def get_common_free_slots(f1,f2,d):
     with duration >= d
     """
     cf = []
+    c1,c2 = 0,0
+    l1 = len(f1)
+    l2 = len(f2)
+    l = max(l1,l2)
+    
+    while(c1 < l1 and c2 < l2):
+    
+        p1fss = convert_to_int(f1[c1][0])
+        p1fse = convert_to_int(f1[c1][1])
+        p2fss = convert_to_int(f2[c2][0])
+        p2fse = convert_to_int(f2[c2][1])
+        
+        
+        ms = max(p1fss,p2fss)
+        me = min(p1fse,p2fse)
+        
+        if (me-ms >= 30):
+            cf.append([convert_to_str(ms),convert_to_str(me)])
+            c1 += 1
+            c2 += 1
+            
+        elif (p1fse < p2fss):
+            c1 += 1
+            
+        elif (p2fse < p1fss):
+            c2 += 1
+      
+        
     return cf
 
 f1 = get_free_time_slots(m1,b1,d)
@@ -86,4 +119,5 @@ print(f"P1: {f1}")
 print(f"P2: {f2}")
 
 cf = get_common_free_slots(f1,f2,d)
-
+print("Common Free time slots: ")
+print(cf)
