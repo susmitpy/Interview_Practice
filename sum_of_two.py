@@ -12,9 +12,26 @@ Tests are written in sum_of_two_test.py before optimising code
 to ensure things go smoothly
 """
 
+#Starter Unoptimised Code
+"""
 def sumOfTwo(a,b,v):
     for i in a:
         for j in b:
             if i+j == v:
                 return True
     return False
+"""
+
+
+def sumOfTwo(a,b,v):
+    remaining_need = {}
+    for i in a:
+        remaining_need[v-i] = True;
+
+    for i in b:
+        if remaining_need.get(i):
+            return True
+    return False
+            
+        
+    

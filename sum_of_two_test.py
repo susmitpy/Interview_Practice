@@ -38,7 +38,11 @@ class TestSumOfTwo(unittest.TestCase):
         v = 3
         self.assertEqual(sumOfTwo(a,b,v),False)
         
-    
+    def test_mega_true(self):
+        a = [i for i in range(10000)]
+        b = [i for i in range(10000)]
+        v = 20000
+        self.assertEqual(sumOfTwo(a,b,v),False)
         
 if __name__ == "__main__":
     unittest.main()
