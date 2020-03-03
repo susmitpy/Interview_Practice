@@ -1,22 +1,70 @@
 """
-Under process.
-
-
+A sudoku Solver.
+Solves sudoku completes toill Medium Difficulty.
+After that human intelligence is needed.
 
 """
 
 import numpy as np
+""" Very Hard
+s = np.array([
+       [0, 0, 4, 0, 6, 0, 2, 0, 0],
+       [0, 0, 0, 8, 0, 4, 0, 0, 0],
+       [2, 0, 0, 0, 0, 0, 0, 0, 5],
+       [0, 6, 0, 1, 0, 2, 0, 9, 0],
+       [0, 8, 0, 6, 9, 5, 0, 3, 0],
+       [1, 0, 0, 0, 0, 0, 0, 0, 7],
+       [5, 9, 0, 0, 0, 0, 0, 4, 1],
+       [0, 0, 0, 9, 0, 3, 0, 0, 0],
+       [0, 0, 6, 0, 0, 0, 9, 0, 0]
+       ])
+
+       # Already: 26
+       # Filled by program: 17
+
+"""
+"""Hard
+s = np.array([
+       [0, 6, 1, 3, 8, 0, 0, 0, 0],
+       [7, 0, 0, 0, 0, 5, 0, 2, 0],
+       [0, 0, 2, 0, 9, 0, 0, 0, 1],
+       [0, 5, 9, 0, 1, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 4, 0, 8, 5, 0],
+       [8, 0, 0, 0, 7, 0, 6, 0, 0],
+       [0, 1, 0, 4, 0, 0, 0, 0, 9],
+       [0, 0, 0, 0, 5 , 3, 4, 1, 0]
+            ])
+#Already: 26
+#Filled by program: 27
+
+"""
+
+"""Medium """
 
 s = np.array([
-       [0, 0, 0, 5, 0, 4, 0, 0, 0],
-       [4, 0, 1, 0, 3, 0, 6, 0, 9],
-       [0, 0, 3, 6, 0, 2, 1, 0, 0],
-       [0, 6, 0,8,4, 7, 0, 3, 0],
-       [0, 0, 0, 0, 0, 0, 0, 0, 0],
-       [0, 8, 0, 2, 5,9,0, 6, 0],
-       [0, 0, 6, 3, 0, 1, 9, 0, 0],
-       [5, 0, 4, 0, 7, 0, 3, 0, 8],
-       [0, 0, 0, 4, 0, 5, 0, 0, 0]])
+       [0, 0, 0, 4, 0, 0, 0, 7, 0],
+       [6, 0, 0, 3, 5, 9, 0, 0, 0],
+       [0, 0, 4, 0, 6, 0, 2, 0, 0],
+       [0, 6, 0, 7, 0, 5, 0, 4, 1],
+       [0, 3, 5, 0, 0, 0, 7, 2, 0],
+       [4, 7, 0, 2, 0, 6, 0, 8, 0],
+       [0, 0, 8, 0, 2, 0, 9, 0, 0],
+       [0, 0, 0, 6, 7, 3, 0, 0, 4],
+       [0, 4, 0, 0, 0, 8, 0, 0, 0]
+            ])
+
+# Already: 32
+# Filled by program: 49
+
+
+already = 0
+for r in range(9):
+    for c in range(9):
+        if s[r,c] != 0:
+            already+=1
+
+
 
 def get_box_limits(r,c):
     r_min, r_max, c_min, c_max = None,None,None,None
@@ -88,7 +136,7 @@ def get_only_possible_box(box):
 
 #sudoku = np.zeros((9,9),dtype=int)
 possibilites = np.full((9,9),set([1,2,3,4,5,6,7,8,9]))
-for i in range(10):
+for i in range(30):
     for r in range(9):
         for c in range(9):
             if s[r][c] == 0:
@@ -130,6 +178,10 @@ for i in range(10):
 filled = 0
 for r in range(9):
     for c in range(9):
-        if type(possibilites[r,c]) != set:
+        if s[r,c] != 0:
             filled+=1
-print(filled)
+
+print(f"Already: {already}")
+print(f"Filled by program: {filled-already}")
+
+print(s)
