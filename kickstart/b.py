@@ -6,7 +6,7 @@ Created on Sun Mar 22 09:39:20 2020
 @author: susmitvengurlekar
 """
 import numpy as np
-"""
+
 t = int(input())
 for tc in range(t):
     N,K,P = [int(i) for i in input().split(" ")]
@@ -24,7 +24,7 @@ for tc in range(t):
      
     
     print("Case #" +  str(tc+1) + ": " + str(to))
-  """ 
+
 
 """
 80
@@ -38,7 +38,7 @@ for tc in range(t):
 
 
 """
-
+"""
 N,K,P = 3,3,5
 stacks= [[120,1,2],[4,240,360],[5,1,2]]
 to = 0
@@ -52,6 +52,6 @@ while rem > 0:
  
 
 print("Case #" +  str(1) + ": " + str(to))
-
+"""
     
         
